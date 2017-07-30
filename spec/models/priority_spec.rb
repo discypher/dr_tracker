@@ -1,5 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Priority, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context "with good data" do
+    let(:priority) { FactoryGirl.create(:priority) }
+    it "should require a level" do
+      priority.level = nil
+      expect(priority).not_to be_valid
+    end
+  end
 end

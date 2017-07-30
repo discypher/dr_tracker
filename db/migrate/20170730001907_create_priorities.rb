@@ -1,7 +1,7 @@
 class CreatePriorities < ActiveRecord::Migration[5.1]
   def change
     create_table :priorities do |t|
-      t.int :value
+      t.integer :level
 
       t.timestamps
     end

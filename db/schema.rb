@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170730023405) do
+ActiveRecord::Schema.define(version: 20170730055749) do
 
   create_table "dependencies", force: :cascade do |t|
     t.integer "system_id"
@@ -20,10 +20,30 @@ ActiveRecord::Schema.define(version: 20170730023405) do
     t.index ["system_id"], name: "index_dependencies_on_system_id"
   end
 
+  create_table "dr_tests", force: :cascade do |t|
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.string "description"
+    t.text "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "priorities", force: :cascade do |t|
     t.integer "level"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "system_under_tests", force: :cascade do |t|
+    t.integer "system_id"
+    t.datetime "completion_time"
+    t.text "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "dr_test_id"
+    t.index ["dr_test_id"], name: "index_system_under_tests_on_dr_test_id"
+    t.index ["system_id"], name: "index_system_under_tests_on_system_id"
   end
 
   create_table "systems", force: :cascade do |t|

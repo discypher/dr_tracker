@@ -16,12 +16,37 @@ class SystemsController < ApplicationController
   end
 
   def create
+    @system = System.new(system_params)
+
+    respond_to do |format|
+      if @system.save
+        format.html { redirect_to @system, notice: 'System was successfully created.' }
+        format.json { render :show, status: :created, location: @system }
+      else
+        format.html { render :new }
+        format.json { render json: @system.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def update
+    respond_to do |format|
+      if @system.update(system_params)
+        format.html { redirect_to @system, notice: 'System was successfully updated.' }
+        format.json { render :show, status: :ok, location: @system}
+      else
+        format.html { render :edit }
+        format.json { render json: @system.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
-  def delete
+  def destroy
+    @system.destroy
+    respond_to do |format|
+      format.html { redirect_to systems_url, notice: 'System was successfully destroyed.' }
+      format.json { head :no_content }
+    end
   end
 
   private

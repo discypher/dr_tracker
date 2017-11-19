@@ -1,0 +1,9 @@
+<h1>New System</h1>
+
+<%= simple_form_for @system do |f| %>
+  <%= f.association :priority, collection: Priority.all, prompt: "Which priority?" %>
+  <%= f.input :description %>
+  <%= f.input :doc_link %>
+  <%= f.association :team, collection: Team.all, prompt: "Who is responsible?" %>
+  <%= f.button :submit %>
+<% end %>

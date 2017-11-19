@@ -1,5 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe DrTest, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'expected methods' do
+    it { is_expected.to respond_to(:system_under_tests) }
+    it { is_expected.to respond_to(:start_date) }
+    it { is_expected.to respond_to(:end_date) }
+    it { is_expected.to respond_to(:description) }
+    it { is_expected.to respond_to(:notes)}
+  end
 end

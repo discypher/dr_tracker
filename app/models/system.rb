@@ -5,4 +5,7 @@ class System < ApplicationRecord
   has_many :required_systems, through: :dependencies
   has_many :dependents, class_name: 'Dependency', foreign_key: 'required_system_id'
   has_many :dependent_systems, through: :dependents, source: :system
+
+  validates :description, presence: true
+  validates :doc_link, presence: true
 end
